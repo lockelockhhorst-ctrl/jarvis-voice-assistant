@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Jarvis — Double Clap Trigger
+Murdock Dunkin — Double Clap Trigger
 Listens to mic. Detects two claps within 1.2s, min 0.1s apart.
 On trigger: runs scripts/launch-session.ps1 then exits.
 """
@@ -45,13 +45,13 @@ def audio_callback(indata, frames, time_info, status):
         if gap >= MIN_GAP:
             if gap <= MAX_GAP and last_clap_time > 0:
                 # Second clap — fire trigger and shut down
-                print(f"[jarvis] Double clap detected! Firing launch script. Shutting down.", flush=True)
+                print(f"[murdock] Double clap detected! Firing launch script. Shutting down.", flush=True)
                 triggered = True
                 last_clap_time = 0.0
                 subprocess.Popen(["powershell", "-ExecutionPolicy", "Bypass", "-File", SCRIPT_PATH])
             else:
                 # First clap
-                print(f"[jarvis] First clap detected (rms={rms:.3f})", flush=True)
+                print(f"[murdock] First clap detected (rms={rms:.3f})", flush=True)
                 last_clap_time = now
 
 with sd.InputStream(
@@ -61,7 +61,7 @@ with sd.InputStream(
     dtype="float32",
     callback=audio_callback,
 ):
-    print("[jarvis] Listening for double clap...", flush=True)
+    print("[murdock] Listening for double clap...", flush=True)
     while not triggered:
         time.sleep(0.1)
-    print("[jarvis] Trigger fired — stopped listening.", flush=True)
+    print("[murdock] Trigger fired — stopped listening.", flush=True)

@@ -1,12 +1,12 @@
 # CLAUDE.md
 
-Dieses Workspace ist **Jarvis** — ein persoenlicher KI-Assistent mit Sprachsteuerung, Browser-Kontrolle und Doppelklatschen-Trigger.
+Dieses Workspace ist **Murdock Dunkin** — ein persoenlicher KI-Assistent mit Sprachsteuerung, Browser-Kontrolle und Doppelklatschen-Trigger.
 
 ---
 
 ## Fuer Claude Code: Setup-Modus
 
-Wenn der Nutzer nach dem Setup fragt oder "Richte Jarvis ein" sagt, folge den Anweisungen in `SETUP.md`. Frage den Nutzer nach seinem Namen, seiner Taetigkeit, und wie er angesprochen werden moechte — diese Infos muessen in den Systemprompt in `server.py` eingetragen werden (ersetze die aktuellen Platzhalter "Julian", "KI-Berater und Automatisierungsexperte", "Sir").
+Wenn der Nutzer nach dem Setup fragt oder "Richte Murdock Dunkin ein" sagt, folge den Anweisungen in `SETUP.md`. Frage den Nutzer nach seinem Namen, seiner Taetigkeit, und wie er angesprochen werden moechte — diese Infos muessen in den Systemprompt in `server.py` eingetragen werden (ersetze die aktuellen Platzhalter "Julian", "KI-Berater und Automatisierungsexperte", "Sir").
 
 **WICHTIG — Pruefe und installiere zuerst alle Voraussetzungen:**
 
@@ -37,10 +37,10 @@ Erst NACHDEM alle Voraussetzungen installiert sind, fahre mit dem Setup in `SETU
 ├── browser_tools.py       # Playwright Browser-Steuerung
 ├── screen_capture.py      # Screenshot + Claude Vision
 ├── frontend/
-│   ├── index.html         # Jarvis Web-UI
+│   ├── index.html         # Murdock Dunkin Web-UI
 │   ├── main.js            # Speech Recognition + WebSocket + Audio
 │   └── style.css          # Dark Theme mit Orb-Animation
 └── scripts/
     ├── clap-trigger.py    # Doppelklatschen-Erkennung
-    └── launch-session.ps1 # Startet alle Apps + Jarvis
+    └── launch-session.ps1 # Startet alle Apps + Murdock Dunkin
 ```

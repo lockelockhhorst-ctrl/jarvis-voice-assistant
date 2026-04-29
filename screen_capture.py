@@ -1,5 +1,5 @@
 """
-Jarvis V2 — Screen Capture
+Murdock Dunkin V2 — Screen Capture
 Takes screenshots and describes them via Claude Vision.
 """
 

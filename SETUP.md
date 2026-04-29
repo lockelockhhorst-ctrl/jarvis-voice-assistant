@@ -1,20 +1,20 @@
-# Jarvis Setup Guide
+# Murdock Dunkin Setup Guide
 
-Dein persoenlicher KI-Assistent — inspiriert von Iron Mans Jarvis.
+Dein persoenlicher KI-Assistent — inspiriert vom Original-Jarvis aus Iron Man.
 
 **Was du bekommst:**
 - Zweimal klatschen → dein komplettes Arbeits-Setup startet
-- Jarvis begruesst dich mit Wetter und deinen Aufgaben
-- Du sprichst frei mit Jarvis — er antwortet per Stimme
-- Jarvis kann deinen Browser steuern (suchen, Seiten oeffnen)
-- Jarvis kann deinen Bildschirm sehen und beschreiben
+- Murdock Dunkin begruesst dich mit Wetter und deinen Aufgaben
+- Du sprichst frei mit Murdock Dunkin — er antwortet per Stimme
+- Murdock Dunkin kann deinen Browser steuern (suchen, Seiten oeffnen)
+- Murdock Dunkin kann deinen Bildschirm sehen und beschreiben
 
 ---
 
 ## Voraussetzungen
 
 - **Windows 10/11**
-- **Google Chrome** (fuer Spracheingabe + Jarvis UI)
+- **Google Chrome** (fuer Spracheingabe + Murdock Dunkin UI)
 - **Claude Code** installiert
 
 Python, alle Dependencies und Browser-Treiber werden automatisch von Claude Code installiert — du musst nichts manuell einrichten.
@@ -25,7 +25,7 @@ Python, alle Dependencies und Browser-Treiber werden automatisch von Claude Code
 
 Oeffne diesen Ordner in VS Code, starte Claude Code, und sag:
 
-> Richte Jarvis fuer mich ein.
+> Richte Murdock Dunkin fuer mich ein.
 
 Claude Code fragt dich dann nach:
 
@@ -36,7 +36,7 @@ Claude Code fragt dich dann nach:
 5. **Programme** — welche Apps sollen beim Doppelklatschen starten?
 6. **Website** — welche Seite soll im Browser aufgehen?
 7. **Stadt fuers Wetter** — z.B. Hamburg
-8. **Obsidian Vault** — optional, welcher Ordner soll Jarvis kennen?
+8. **Obsidian Vault** — optional, welcher Ordner soll Murdock Dunkin kennen?
 
 ---
 
@@ -71,7 +71,7 @@ Eine deutsche Stimme auswaehlen und die Voice ID in die Config eintragen. Empfeh
 
 ### 4. Systemprompt
 Der Systemprompt wird in `server.py` automatisch aus der Config generiert. Er enthaelt:
-- Jarvis-Persoenlichkeit (trocken, sarkastisch, britisch-hoeflich)
+- Murdock Dunkin-Persoenlichkeit (trocken, sarkastisch, britisch-hoeflich)
 - Siezen mit gewaehlter Anrede
 - Wetter- und Aufgaben-Integration
 - Browser-Steuerung via Action-Tags
@@ -98,7 +98,7 @@ Mikrofon (Chrome) → Web Speech API → WebSocket → FastAPI Server
 
 ## Starten
 
-### Jarvis manuell starten
+### Murdock Dunkin manuell starten
 ```
 python server.py
 ```
@@ -108,7 +108,7 @@ Dann http://localhost:8340 in Chrome oeffnen.
 ```
 python scripts\clap-trigger.py
 ```
-Zweimal klatschen → Spotify, VS Code, Obsidian, Chrome mit Jarvis starten automatisch.
+Zweimal klatschen → Spotify, VS Code, Obsidian, Chrome mit Murdock Dunkin starten automatisch.
 
 ### Clap Trigger beim Windows-Start
 1. `Win + R` → `taskschd.msc`
@@ -118,13 +118,13 @@ Zweimal klatschen → Spotify, VS Code, Obsidian, Chrome mit Jarvis starten auto
 
 ---
 
-## Was Jarvis kann
+## Was Murdock Dunkin kann
 
 - **"Wie ist das Wetter?"** → kennt das aktuelle Wetter
 - **"Such nach MiroFish"** → oeffnet Browser, sucht, liest Ergebnisse
 - **"Oeffne skool.com"** → oeffnet die Seite im Browser
 - **"Was siehst du auf meinem Bildschirm?"** → macht Screenshot, beschreibt was er sieht
-- **Jede Frage** → antwortet im Jarvis-Stil mit Stimme
+- **Jede Frage** → antwortet im Murdock Dunkin-Stil mit Stimme
 
 ---
 
@@ -132,7 +132,7 @@ Zweimal klatschen → Spotify, VS Code, Obsidian, Chrome mit Jarvis starten auto
 
 | Problem | Loesung |
 |---|---|
-| Jarvis spricht nicht | Pruefen ob Server laeuft (`python server.py`) und Chrome offen ist |
+| Murdock Dunkin spricht nicht | Pruefen ob Server laeuft (`python server.py`) und Chrome offen ist |
 | "Verbindung verloren" | Alter Server-Prozess laeuft noch → `taskkill /f /im python.exe` und neu starten |
 | Klatschen wird nicht erkannt | Threshold in `clap-trigger.py` anpassen |
 | Browser-Suche geht nicht | `playwright install chromium` ausfuehren |
@@ -142,7 +142,7 @@ Zweimal klatschen → Spotify, VS Code, Obsidian, Chrome mit Jarvis starten auto
 
 ## Fuer Claude Code: Setup-Anweisungen
 
-Wenn ein Nutzer "Richte Jarvis ein" sagt, fuehre folgende Schritte aus:
+Wenn ein Nutzer "Richte Murdock Dunkin ein" sagt, fuehre folgende Schritte aus:
 
 **Schritt 0 — Voraussetzungen pruefen und installieren:**
 - Pruefe ob Python 3.10+ installiert ist: `python --version`
@@ -188,7 +188,7 @@ WICHTIG: Pruefe den Prompt sorgfaeltig — "Julian" und "Sir" kommen an mehreren
 **Schritt 5 — Testen:**
 - Starte den Server: `python server.py`
 - Oeffne http://localhost:8340 in Chrome
-- Pruefe ob Jarvis spricht und antwortet
+- Pruefe ob Murdock Dunkin spricht und antwortet
 
 **Schritt 6 — Optional: Autostart einrichten (Task Scheduler)**
 

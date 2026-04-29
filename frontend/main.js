@@ -1,4 +1,4 @@
-// Jarvis V2 — Frontend
+// Murdock Dunkin V2 — Frontend
 const orb = document.getElementById('orb');
 const status = document.getElementById('status');
 const transcript = document.getElementById('transcript');
@@ -14,7 +14,7 @@ function unlockAudio() {
         const silent = new Audio('data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAABhgC7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7//////////////////////////////////////////////////////////////////8AAAAATGF2YzU4LjEzAAAAAAAAAAAAAAAAJAAAAAAAAAAAAYZNIGPkAAAAAAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAABhgC7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7//////////////////////////////////////////////////////////////////8AAAAATGF2YzU4LjEzAAAAAAAAAAAAAAAAJAAAAAAAAAAAAYZNIGPkAAAAAAAAAAAAAAAAAAAA');
         silent.play().then(() => {
             audioUnlocked = true;
-            console.log('[jarvis] Audio unlocked');
+            console.log('[murdock] Audio unlocked');
         }).catch(() => {});
     }
 }
@@ -25,15 +25,15 @@ document.addEventListener('keydown', unlockAudio, { once: false });
 function connect() {
     ws = new WebSocket(`ws://${location.host}/ws`);
     ws.onopen = () => {
-        console.log('[jarvis] WebSocket connected');
-        status.textContent = 'Klicke einmal irgendwo, dann spricht Jarvis.';
+        console.log('[murdock] WebSocket connected');
+        status.textContent = 'Klicke einmal irgendwo, dann spricht Murdock Dunkin.';
         setOrbState('thinking');
-        ws.send(JSON.stringify({ text: 'Jarvis activate' }));
+        ws.send(JSON.stringify({ text: 'Murdock Dunkin activate' }));
     };
     ws.onmessage = (event) => {
         const data = JSON.parse(event.data);
         if (data.type === 'response') {
-            addTranscript('jarvis', data.text);
+            addTranscript('murdock', data.text);
             if (data.audio && data.audio.length > 0) {
                 queueAudio(data.audio);
             } else {
@@ -79,8 +79,8 @@ function playNext() {
     audio.onended = () => { URL.revokeObjectURL(url); playNext(); };
     audio.onerror = () => { URL.revokeObjectURL(url); playNext(); };
     audio.play().catch(err => {
-        console.warn('[jarvis] Autoplay blocked, waiting for click...');
-        status.textContent = 'Klicke irgendwo damit Jarvis sprechen kann.';
+        console.warn('[murdock] Autoplay blocked, waiting for click...');
+        status.textContent = 'Klicke irgendwo damit Murdock Dunkin sprechen kann.';
         setOrbState('idle');
         // Wait for click then retry
         document.addEventListener('click', function retry() {
@@ -111,7 +111,7 @@ if (SpeechRecognition) {
             if (text) {
                 addTranscript('user', text);
                 setOrbState('thinking');
-                status.textContent = 'Jarvis denkt nach...';
+                status.textContent = 'Murdock Dunkin denkt nach...';
                 ws.send(JSON.stringify({ text }));
             }
         }
@@ -159,7 +159,7 @@ function setOrbState(state) { orb.className = state; }
 function addTranscript(role, text) {
     const div = document.createElement('div');
     div.className = role;
-    div.textContent = role === 'user' ? `Du: ${text}` : `Jarvis: ${text}`;
+    div.textContent = role === 'user' ? `Du: ${text}` : `Murdock Dunkin: ${text}`;
     transcript.appendChild(div);
     transcript.scrollTop = transcript.scrollHeight;
 }

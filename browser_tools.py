@@ -1,5 +1,5 @@
 """
-Jarvis V2 — Browser Tools
+Murdock Dunkin V2 — Browser Tools
 Web search via DuckDuckGo Lite, page visits via Playwright, URL opening.
 """
 

@@ -1,6 +1,6 @@
-# J.A.R.V.I.S. — Personal AI Voice Assistant
+# Murdock Dunkin — Personal AI Voice Assistant
 
-> Double-clap. Jarvis wakes up, greets you with the weather and your tasks, answers your questions with dry British wit, controls your browser, and sees your screen.
+> Double-clap. Murdock Dunkin wakes up, greets you with the weather and your tasks, answers your questions with dry British wit, controls your browser, and sees your screen.
 
 Built entirely with [Claude Code](https://claude.ai/code) — no code written manually.
 
@@ -14,13 +14,13 @@ Built entirely with [Claude Code](https://claude.ai/code) — no code written ma
 
 ## Features
 
-- **Double-Clap Trigger** — Clap twice and your entire workspace launches: Spotify, VS Code, Obsidian, Chrome with Jarvis UI
-- **Voice Conversation** — Speak freely with Jarvis through your microphone. He listens, thinks, and responds with voice
-- **Sarcastic British Butler** — Jarvis speaks German with the personality of Tony Stark's AI: dry, witty, and always one step ahead
-- **Weather & Tasks** — On startup, Jarvis greets you with the current weather and a humorous summary of your open tasks from Obsidian
-- **Browser Automation** — "Search for MiroFish" → Jarvis opens a real browser, navigates to the page, reads the content, and summarizes it for you
-- **Screen Vision** — "What's on my screen?" → Jarvis takes a screenshot, analyzes it with Claude Vision, and describes what he sees
-- **World News** — "What's happening in the world?" → Jarvis opens worldmonitor.app and summarizes current global events
+- **Double-Clap Trigger** — Clap twice and your entire workspace launches: Spotify, VS Code, Obsidian, Chrome with Murdock Dunkin UI
+- **Voice Conversation** — Speak freely with Murdock Dunkin through your microphone. He listens, thinks, and responds with voice
+- **Sarcastic British Butler** — Murdock Dunkin speaks German with the personality of Tony Stark's AI: dry, witty, and always one step ahead
+- **Weather & Tasks** — On startup, Murdock Dunkin greets you with the current weather and a humorous summary of your open tasks from Obsidian
+- **Browser Automation** — "Search for MiroFish" → Murdock Dunkin opens a real browser, navigates to the page, reads the content, and summarizes it for you
+- **Screen Vision** — "What's on my screen?" → Murdock Dunkin takes a screenshot, analyzes it with Claude Vision, and describes what he sees
+- **World News** — "What's happening in the world?" → Murdock Dunkin opens worldmonitor.app and summarizes current global events
 - **Window Snapping** — All launched apps automatically snap into quadrants on your screen
 
 ---
@@ -81,7 +81,7 @@ You (speak) → Chrome Browser (Web Speech API) → FastAPI Server (local)
 
 2. Open in VS Code, start Claude Code, and say:
    ```
-   Set up Jarvis for me.
+   Set up Murdock Dunkin for me.
    ```
 
 3. Claude Code will ask for your API keys, name, preferences, and configure everything automatically.
@@ -118,7 +118,7 @@ You (speak) → Chrome Browser (Web Speech API) → FastAPI Server (local)
    }
    ```
 
-4. **Start Jarvis:**
+4. **Start Murdock Dunkin:**
    ```bash
    python server.py
    ```
@@ -131,7 +131,7 @@ You (speak) → Chrome Browser (Web Speech API) → FastAPI Server (local)
 
 ## Usage
 
-### Start Jarvis manually
+### Start Murdock Dunkin manually
 ```bash
 python server.py
 ```
@@ -141,7 +141,7 @@ Then open `http://localhost:8340` in Chrome.
 ```bash
 python scripts/clap-trigger.py
 ```
-Clap twice → Spotify plays your song, VS Code opens, Obsidian opens, Chrome opens with Jarvis. All windows snap into quadrants.
+Clap twice → Spotify plays your song, VS Code opens, Obsidian opens, Chrome opens with Murdock Dunkin. All windows snap into quadrants.
 
 ### Auto-start on Windows login
 1. Open Task Scheduler (`Win + R` → `taskschd.msc`)
@@ -157,12 +157,12 @@ Clap twice → Spotify plays your song, VS Code opens, Obsidian opens, Chrome op
 
 | Command | What Happens |
 |---------|-------------|
-| *"Good morning, Jarvis"* | Jarvis greets you with weather + tasks |
+| *"Good morning, Murdock Dunkin"* | Murdock Dunkin greets you with weather + tasks |
 | *"Search for AI news"* | Opens browser, searches, summarizes results |
 | *"Open skool.com"* | Opens the URL in your browser |
 | *"What's on my screen?"* | Takes screenshot, describes what he sees |
 | *"What's happening in the world?"* | Opens worldmonitor.app, summarizes global news |
-| *Any question* | Jarvis answers in his sarcastic butler style |
+| *Any question* | Murdock Dunkin answers in his sarcastic butler style |
 
 ---
 
@@ -177,7 +177,7 @@ jarvis-voice-assistant/
 ├── config.example.json    # Template for new users
 ├── requirements.txt       # Python dependencies
 ├── frontend/
-│   ├── index.html         # Jarvis web UI
+│   ├── index.html         # Murdock Dunkin web UI
 │   ├── main.js            # Speech recognition + WebSocket + audio
 │   └── style.css          # Dark theme with animated orb
 ├── scripts/
@@ -191,7 +191,7 @@ jarvis-voice-assistant/
 
 ## Customization
 
-### Change Jarvis's personality
+### Change Murdock Dunkin's personality
 Edit the system prompt in `server.py` → `build_system_prompt()`. The personality, greeting behavior, and action instructions are all defined there.
 
 ### Change which apps launch
@@ -232,12 +232,12 @@ MAX_GAP = 1.2     # Seconds between claps
 
 | Problem | Solution |
 |---------|----------|
-| Jarvis doesn't speak | Check if server is running. Kill old process: `taskkill /f /im python.exe` then restart |
+| Murdock Dunkin doesn't speak | Check if server is running. Kill old process: `taskkill /f /im python.exe` then restart |
 | "Connection lost" in browser | Old server still running on port 8340. Kill it and restart |
 | Clap not detected | Lower `THRESHOLD` in `clap-trigger.py` (try 0.10) |
 | Browser search fails | Run `playwright install chromium` |
 | No audio in Chrome | Click anywhere on the page first (Chrome autoplay policy) |
-| Jarvis says "Sir planen" instead of "Sie planen" | Update the system prompt grammar rules in `server.py` |
+| Murdock Dunkin says "Sir planen" instead of "Sie planen" | Update the system prompt grammar rules in `server.py` |
 
 ---
 

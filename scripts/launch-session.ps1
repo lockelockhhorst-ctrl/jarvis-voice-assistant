@@ -1,4 +1,4 @@
-# Jarvis — Launch Session (Windows)
+# Murdock Dunkin — Launch Session (Windows)
 
 # Load config
 $configPath = Join-Path $PSScriptRoot "..\config.json"
@@ -40,7 +40,7 @@ Start-Process $SPOTIFY_URI
 code $WORKSPACE_PATH
 foreach ($app in $config.apps) { Start-Process $app }
 
-# 2. Chrome with Jarvis + Skool
+# 2. Chrome with Murdock Dunkin + Skool
 Start-Process "chrome" -ArgumentList "--autoplay-policy=no-user-gesture-required http://localhost:8340 $BROWSER_URL"
 
 # 3. Snap all windows into quadrants

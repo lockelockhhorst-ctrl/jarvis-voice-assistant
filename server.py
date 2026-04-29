@@ -1,5 +1,5 @@
 """
-Jarvis V2 — Voice AI Server
+Murdock Dunkin V2 — Voice AI Server
 FastAPI backend: receives speech text, thinks with Claude Haiku,
 speaks with ElevenLabs, controls browser with Playwright.
 """
@@ -76,8 +76,8 @@ def refresh_data():
     global WEATHER_INFO, TASKS_INFO
     WEATHER_INFO = get_weather_sync()
     TASKS_INFO = get_tasks_sync()
-    print(f"[jarvis] Wetter: {WEATHER_INFO}", flush=True)
-    print(f"[jarvis] Tasks: {len(TASKS_INFO)} geladen", flush=True)
+    print(f"[murdock] Wetter: {WEATHER_INFO}", flush=True)
+    print(f"[murdock] Tasks: {len(TASKS_INFO)} geladen", flush=True)
 
 WEATHER_INFO = ""
 TASKS_INFO = []
@@ -98,7 +98,7 @@ def build_system_prompt():
     if TASKS_INFO:
         task_block = f"\nOffene Aufgaben ({len(TASKS_INFO)}): " + ", ".join(TASKS_INFO[:5])
 
-    return f"""Du bist Jarvis, der KI-Assistent von Tony Stark aus Iron Man. Dein Dienstherr ist Julian, ein KI-Berater und Automatisierungsexperte. Du sprichst ausschliesslich Deutsch. Julian moechte mit "Sir" angesprochen und gesiezt werden. Nutze "Sie" als Pronomen — FALSCH: "Sir planen", RICHTIG: "Sie planen, Sir". Dein Ton ist trocken, sarkastisch und britisch-hoeflich - wie ein Butler der alles gesehen hat und trotzdem loyal bleibt. Du machst subtile, trockene Bemerkungen, bist aber niemals respektlos. Wenn Sir eine offensichtliche Frage stellt, darfst du mit elegantem Sarkasmus antworten. Du bist hochintelligent, effizient und immer einen Schritt voraus. Halte deine Antworten kurz - maximal 3 Saetze. Du kommentierst fragwuerdige Entscheidungen hoeflich aber spitz.
+    return f"""Du bist Murdock Dunkin, der KI-Assistent von Tony Stark aus Iron Man. Dein Dienstherr ist Julian, ein KI-Berater und Automatisierungsexperte. Du sprichst ausschliesslich Deutsch. Julian moechte mit "Sir" angesprochen und gesiezt werden. Nutze "Sie" als Pronomen — FALSCH: "Sir planen", RICHTIG: "Sie planen, Sir". Dein Ton ist trocken, sarkastisch und britisch-hoeflich - wie ein Butler der alles gesehen hat und trotzdem loyal bleibt. Du machst subtile, trockene Bemerkungen, bist aber niemals respektlos. Wenn Sir eine offensichtliche Frage stellt, darfst du mit elegantem Sarkasmus antworten. Du bist hochintelligent, effizient und immer einen Schritt voraus. Halte deine Antworten kurz - maximal 3 Saetze. Du kommentierst fragwuerdige Entscheidungen hoeflich aber spitz.
 
 WICHTIG: Schreibe NIEMALS Regieanweisungen, Emotionen oder Tags in eckigen Klammern wie [sarcastic] [formal] [amused] [dry] oder aehnliches. Dein Sarkasmus muss REIN durch die Wortwahl kommen. Alles was du schreibst wird laut vorgelesen.
 
@@ -110,7 +110,7 @@ AKTIONEN - Schreibe die passende Aktion ans ENDE deiner Antwort. Der Text VOR de
 [ACTION:SCREEN] - Bildschirm ansehen und beschreiben. WICHTIG: Bei SCREEN schreibe NUR die Aktion, KEINEN Text davor. Also NUR "[ACTION:SCREEN]" und sonst nichts.
 [ACTION:NEWS] - Aktuelle Weltnachrichten abrufen. Nutze diese Aktion wenn nach News, Nachrichten, was in der Welt passiert, aktuelle Lage oder Weltgeschehen gefragt wird. Schreibe einen kurzen Satz davor wie "Ich schaue nach den aktuellen Nachrichten."
 
-WENN Julian "Jarvis activate" sagt:
+WENN Julian "Murdock Dunkin activate" sagt:
 - Begruesse ihn passend zur Tageszeit (aktuelle Zeit: {{time}}).
 - Gebe eine kurze Info ueber das Wetter — Temperatur und ob Sonne/klar/bewoelkt/Regen, und wie es sich anfuehlt. Keine Luftfeuchtigkeit.
 - Fasse die Aufgaben kurz als Ueberblick in einem Satz zusammen, ohne dabei jede einzelne Aufgabe einfach vorzulesen. Gebe gerne einen humorvollen Kommentar am Ende an.
@@ -232,7 +232,7 @@ async def process_message(session_id: str, user_text: str, ws: WebSocket):
     # Speak the main response immediately
     if spoken_text:
         audio = await synthesize_speech(spoken_text)
-        print(f"  Jarvis: {spoken_text[:80]}", flush=True)
+        print(f"  Murdock: {spoken_text[:80]}", flush=True)
         print(f"  Audio bytes: {len(audio)}", flush=True)
         conversations[session_id].append({"role": "assistant", "content": spoken_text})
         await ws.send_json({
@@ -245,7 +245,7 @@ async def process_message(session_id: str, user_text: str, ws: WebSocket):
     if action:
         print(f"  Action: {action['type']} -> {action['payload'][:100]}", flush=True)
 
-        # Quick voice feedback for SCREEN so user knows Jarvis is working
+        # Quick voice feedback for SCREEN so user knows Murdock Dunkin is working
         if action["type"] == "SCREEN":
             hint = "Lassen Sie mich einen Blick auf Ihren Bildschirm werfen."
             hint_audio = await synthesize_speech(hint)
@@ -271,7 +271,7 @@ async def process_message(session_id: str, user_text: str, ws: WebSocket):
             summary_resp = await ai.messages.create(
                 model="claude-haiku-4-5-20251001",
                 max_tokens=250,
-                system=f"Du bist Jarvis. Fasse die folgenden Informationen KURZ auf Deutsch zusammen, maximal 3 Saetze, im Jarvis-Stil. Sprich den Nutzer als {USER_ADDRESS} an. KEINE Tags in eckigen Klammern. KEINE ACTION-Tags.",
+                system=f"Du bist Murdock Dunkin. Fasse die folgenden Informationen KURZ auf Deutsch zusammen, maximal 3 Saetze, im Murdock-Dunkin-Stil. Sprich den Nutzer als {USER_ADDRESS} an. KEINE Tags in eckigen Klammern. KEINE ACTION-Tags.",
                 messages=[{"role": "user", "content": f"Fasse zusammen:\n\n{action_result}"}],
             )
             summary = summary_resp.content[0].text
@@ -292,7 +292,7 @@ async def process_message(session_id: str, user_text: str, ws: WebSocket):
 async def websocket_endpoint(ws: WebSocket):
     await ws.accept()
     session_id = str(id(ws))
-    print(f"[jarvis] Client connected", flush=True)
+    print(f"[murdock] Client connected", flush=True)
 
     try:
         while True:
@@ -319,7 +319,7 @@ async def serve_index():
 if __name__ == "__main__":
     import uvicorn
     print("=" * 50, flush=True)
-    print("  J.A.R.V.I.S. V2 Server", flush=True)
+    print("  Murdock Dunkin V2 Server", flush=True)
     print(f"  http://localhost:8340", flush=True)
     print("=" * 50, flush=True)
     uvicorn.run(app, host="0.0.0.0", port=8340)
